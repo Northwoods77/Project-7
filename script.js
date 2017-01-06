@@ -9,6 +9,14 @@ window.onload = function () {
         dTime = document.getElementById("durationTime"),
         videoContainer = document.getElementById("video-container");
     
+        //Add video duration
+    video.addEventListener("timeupdate", function () {
+        var dTime = document.getElementById("durationTime"),
+            minutes = Math.floor(video.duration / 60),
+            seconds = Math.floor(video.duration - minutes * 60);
+        dTime.innerHTML = (minutes + ":" + seconds);
+    });
+    
     //Set initial current time and duration time
     cTime.innerHTML = "0:00" + " / " + Math.floor(video.currentTime);
     dTime.innerHTML = ":" + Math.floor(video.duration);
@@ -88,13 +96,6 @@ window.onload = function () {
         cTime.innerHTML = (x + y + " " + "/ ");
     });
     
-    //Add video duration
-    video.addEventListener("timeupdate", function () {
-        var dTime = document.getElementById("durationTime"),
-            minutes = Math.floor(video.duration / 60),
-            seconds = Math.floor(video.duration - minutes * 60);
-        dTime.innerHTML = (minutes + ":" + seconds);
-    });
     
     // Volume Controls - Toggle on/off
     volume.addEventListener('click', function () {
